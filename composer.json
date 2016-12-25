@@ -1,0 +1,24 @@
+{
+    "name": "lambdacasserole/chalk",
+    "type": "library",
+    "description": "Blackboard authentication module.",
+    "keywords": ["blackboard","authentication","module"],
+    "homepage": "https://github.com/lambdacasserole/chalk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saul Johnson",
+            "email": "saul.a.johnson@gmail.com",
+            "homepage": "https://sauljohnson.com/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chalk\\": "src/"
+        }
+    }
+}
