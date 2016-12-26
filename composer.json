@@ -1,7 +1,7 @@
 {
     "name": "lambdacasserole/chalk",
     "type": "library",
-    "description": "Blackboard authentication module.",
+    "description": "Allows your users to authenticate against a Blackboard Learn installation.",
     "keywords": ["blackboard","authentication","module"],
     "homepage": "https://github.com/lambdacasserole/chalk",
     "license": "MIT",
