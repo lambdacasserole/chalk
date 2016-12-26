@@ -14,18 +14,46 @@ use GuzzleHttp\Cookie\CookieJar;
  */
 class Authenticator {
 
+    /**
+     * The default string to search for to determine whether or not the user has logged in successfully.
+     */
+    const DEFAULT_FLAG = 'Modules you are studying:';
+
+    /**
+     * The URL of the installation.
+     *
+     * @var string
+     */
     private $url;
+
+    /**
+     * Whether or not to verify SSL certificates.
+     *
+     * @var bool
+     */
+    private $verify;
+
+    /**
+     * The string to search for to determine whether or not the user has logged in successfully.
+     *
+     * @var string
+     */
+    private $flag;
 
     /**
      * Initialises a new instance of an authenticator against a Blackboard installation.
      *
      * @param string $url   the URL of the installation
+     * @param bool $verify  whether or not to verify SSL certificates
+     * @param string $flag  the string to search for to determine whether or not the user has logged in successfully
      */
-    public function __construct($url) {
+    public function __construct($url, $verify = true, $flag = self::DEFAULT_FLAG) {
         $this->url = trim($url);
         if (!self::endsWith($this->url, '/')) {
             $this->url .= '/';
         }
+        $this->verify = $verify;
+        $this->flag = $flag;
     }
 
     /**
@@ -78,9 +106,9 @@ class Authenticator {
             'encoded_pw_unicode' => base64_encode(self::padWithNulls($password))
         );
 
-        // Store cookies to carry through the session, don't verify SSL.
+        // Store cookies to carry through the session.
         $cookies = new CookieJar();
-        $client = new Client(['verify' => false, 'cookies' => $cookies]);
+        $client = new Client(['verify' => $this->verify, 'cookies' => $cookies]);
 
         // Make an initial request, this will give us our session ID.
         $client->request('GET', $this->url);
@@ -92,7 +120,7 @@ class Authenticator {
 
         // If this text is in the body, we're logged in.
         $body = $response->getBody()->getContents();
-        if (strpos($body, 'Modules you are studying:') !== false) {
+        if (strpos($body, self::DEFAULT_FLAG) !== false) {
             return true;
         }
 
