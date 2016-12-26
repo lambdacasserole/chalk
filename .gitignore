@@ -44,4 +44,5 @@ crashlytics-build.properties
 fabric.properties
 
 # Composer packages
-vendor
+composer.phar
+/vendor/
