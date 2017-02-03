@@ -28,5 +28,8 @@ It might be possible to craft a username or password which injects the flag into
 ## Limitations
 If you just want to check whether a set of credentials is valid or not, Chalk might be the library for you. It can't do anything else at all. Give it a username and password and get back a boolean. That's it.
 
+## Contributing
+For most intents and purposes, Chalk is considered to fulfil its original use case. Bug fixes and suggestions are welcome, however, from any member of the community.
+
 ## Disclaimer
 CHALK AND ITS AUTHOR(S) ARE NOT AFFILIATED WITH BLACKBOARD AND ALL OTHER BLACKBOARD PRODUCT NAMES ARE TRADEMARKS OR REGISTERED TRADEMARKS OF BLACKBOARD INC. ALL OTHER COMPANY AND PRODUCT NAMES ARE TRADEMARKS OR REGISTERED TRADEMARKS OF THEIR RESPECTIVE COMPANIES.
