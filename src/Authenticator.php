@@ -72,21 +72,6 @@ class Authenticator {
     }
 
     /**
-     * Pads each of a string's characters with a right-hand null byte and returns the result.
-     *
-     * @param string $str   the string to pad
-     * @return string       the transformed string
-     */
-    private static function padWithNulls($str) {
-        $chars = str_split($str);
-        $output = '';
-        foreach ($chars as $char) {
-            $output .= $char . "\0";
-        }
-        return $output;
-    }
-
-    /**
      * Authenticates against the installation.
      *
      * @param string $username  the username credential
@@ -95,15 +80,10 @@ class Authenticator {
      */
     function authenticate($username, $password) {
         $fields = array('user_id' => $username,
-            'password' => '',
+            'password' => $password,
             'login' => 'Login',
             'action' => 'login',
-            'remote-user' => '',
-            'new_loc' => '',
-            'auth_type' => '',
-            'one_time_token' => '',
-            'encoded_pw' => base64_encode($password),
-            'encoded_pw_unicode' => base64_encode(self::padWithNulls($password))
+            'new_loc' => ''
         );
 
         // Store cookies to carry through the session.
